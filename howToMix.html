@@ -111,5 +111,17 @@ function move() {
 	<span class="tooltiptext">Tooltip text</span>
 </div>
 
+<!--popup-->
+<h2>Popup</h2>
+<p>Click on the text below:</p>
+<div class="popup" onclick="myFunction()">Click me
+	<span class="popuptext" id="myPopup">Popup text...</span>
+</div>
+<script>
+	function myFunction(){
+		var popup = document.getElementById('myPopup');
+		popup.classList.toggle('show');
+	}
+</script>
 </body>
 </html>
