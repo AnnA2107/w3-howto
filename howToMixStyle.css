@@ -294,3 +294,9 @@ th, td{
 tr:nth-child(even){
 	background-color: #f2f2f2
 }
+
+/*image effects*/
+img {
+    -webkit-filter: grayscale(100%); /* Chrome, Safari, Opera */
+    filter: grayscale(100%);
+}
