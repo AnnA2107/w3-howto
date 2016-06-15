@@ -65,5 +65,35 @@ window.onclick = function(e) {
   }
 }
 </script>
+
+<!--clicable dropdown button-->
+<div class="dropdown-clickable">
+	<button onclick="clickFunction()" class="dropbtn-clickable">Dropdown</button>
+	<div id="clickDropdown" class="dropdown-content-clickable">
+		<a href="#">Link 1</a>
+		<a href="#">Link 2</a>
+		<a href="#">Link 3</a>
+	</div>
+</div>
+<script>
+	function clickFunction(){
+		document.getElementById("clickDropdown").classList.toggle("show-clickable");
+	}
+// Close the dropdown if the user clicks outside of it
+window.onclick = function(h) {
+  if (!h.target.matches('.dropbtn-clickable')) {
+
+    var dropdowns = document.getElementsByClassName("dropdown-content-clickable");
+    var i;
+    for (i = 0; i < dropdowns.length; i++) {
+      var openDropdown = dropdowns[i];
+      if (openDropdown.classList.contains('show-clickable')) {
+          openDropdown.classList.remove('show-clickable');
+      }
+    }
+  }
+}
+</script>
+
 </body>
 </html>
