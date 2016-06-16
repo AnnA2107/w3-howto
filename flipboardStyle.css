@@ -40,6 +40,8 @@
 /* Dropdown */
 
 .dropdown-menu {
+  display: none;
+  position: absolute;
   font-size: 16px;
   margin-top: 5px;
   min-width: 105px;
@@ -51,7 +53,20 @@
   font-weight: 300;
 }
 
-
+.dropbtn{
+  color: #898989;
+  padding: 6px 20px;
+  font-weight: 300;
+  border: 0;
+}
+.dropdown{
+  position: relative;
+  display: inline-block;
+}
+/* Show the dropdown menu (use JS to add this class to 
+the .dropdown-menu container when the user 
+clicks on the dropdown button) */
+.show {display:block;}
 /* Carousel */
 
 .slider {

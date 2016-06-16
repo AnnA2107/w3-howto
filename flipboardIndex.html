@@ -21,8 +21,8 @@
           <li><a href="#">Support</a></li>
           <li><a href="#">Careers</a></li>
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle">More <b class="caret"></b></a>
-            <ul class="dropdown-menu">
+            <a onclick="myFunction()" class="dropdbtn">More <b class="caret"></b></a>
+            <ul id="myDropdown" class="dropdown-menu">
               <li><a href="#">Community</a></li>
               <li><a href="#">Our Blog</a></li>
               <li><a href="#">Maps Blog</a></li>
@@ -122,9 +122,14 @@
       <a href="#" class="arrow-next"><img src="http://s3.amazonaws.com/codecademy-content/courses/ltp2/img/flipboard/arrow-next.png"></a>
     </div> 
     
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+   <!-- <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>-->
     <script>
-      var main = function() {
+function myFunction(){
+  document.getElementById("myDropdown").classList.toggle("show");
+}
+
+    /*
+    var main = function() {
     $('.dropdown-toggle').click(function() {
     $('.dropdown-menu').toggle();
   };
@@ -167,7 +172,7 @@
     prevDot.addClass('active-dot');
     });
 }
-$(document).ready(main);
+$(document).ready(main);*/
     </script>
   </body>
 </html>
