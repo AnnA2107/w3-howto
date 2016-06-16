@@ -8,8 +8,9 @@
 <body onload="startGame()">
 <script>
 var myGamePiece;
+var myObstacle;
 // canvas controller
-var myUpBtn, myDownBtn, myLeftBtn, myRightBtn;
+/*var myUpBtn, myDownBtn, myLeftBtn, myRightBtn;*/
 /*add 3 more components*/
 /*var redGamePiece, blueGamePiece, yellowGamePiece;*/
 
@@ -19,6 +20,7 @@ function startGame() {
     yellowGamePiece = new component(75, 75, "yellow", 50, 60); 
     blueGamePiece = new component(75, 75, "blue", 10, 110);*/
     myGamePiece = new component (30, 30, "red", 10, 120);
+    myObstacle = new component (10, 200, "green", 300, 120);
     //canvas controller
     /*
     myUpBtn = new component(30, 30, "blue", 50, 10);
@@ -119,6 +121,7 @@ function component(width, height, color, x,y){
 }
 function updateGameArea(){
 	myGameArea.clear();
+	myObstacle.update();
 	//canvas controller
 	/*if(myGameArea.x && myGameArea.y){
 		if(myUpBtn.clicked()){
@@ -189,13 +192,13 @@ function moveup(){
 	myGamePiece.speedY -=1;
 }
 function movedown(){
-	myGamePiece.speedY +=1;
+	myGamePiece.speedY =1;
 }
 function moveleft(){
 	myGamePiece.speedX -=1;
 }
 function moveright(){
-	myGamePiece.speedX +=1;
+	myGamePiece.speedX =1;
 }
 function clearmove() {
     myGamePiece.speedX = 0;
@@ -209,7 +212,6 @@ function clearmove() {
 <button onmousedown="movedown()" onmouseup="clearmove()" ontouchstart="movedown()">DOWN</button>
 
 </div>
-<p>If you click a button the red square will start moving. The movement will stop when you stop pressing th button.</p>
-<p>We have added the ontouchstart event on the buttons, to make this example work for touch devices.</p>
+<p>Now there is an obstacle in our gaming area, but still nothing happens when the red square hit it.</p>
 </body>
 </html>
