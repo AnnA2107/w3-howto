@@ -26,15 +26,22 @@ var myGameArea = {
         this.canvas.width = 480;
         this.canvas.height = 270;
         //mouse coursor as controller
-        this.canvas.style.cursor = "none"; //hide the original cursor
+        /*this.canvas.style.cursor = "none"; //hide the original cursor*/
         this.context = this.canvas.getContext("2d");
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.interval = setInterval(updateGameArea, 20);
+        //touch screen as controller
+        /*
+        window.addEventListener("touchmove",function (e){
+        	myGameArea.x = e.touches[0].screenX;
+        	myGameArea.y = e.touches[0].screenY;
+        })
+        */
         //mouse coursor as controller
-        window.addEventListener("mousemove", function(e){
+        /*window.addEventListener("mousemove", function(e){
         	myGameArea.x = e.pageX;
         	myGameArea.y = e.pageY;
-        })
+        })*/
         //keybord as controller
         /*
         window.addEventListener("keydown", function(e){
@@ -69,11 +76,18 @@ function component(width, height, color, x,y){
 }
 function updateGameArea(){
 	myGameArea.clear();
-	//mouse coursor as controller
-	if(myGameArea.x && myGameArea.y){
+	//touchscreen as controller
+	/*
+	if(myGameArea.touchX && myGameArea.touchY){
 		myGamePiece.x = myGameArea.x;
 		myGamePiece.y = myGameArea.y;
 	}
+	*/
+	//mouse coursor as controller
+	/*if(myGameArea.x && myGameArea.y){
+		myGamePiece.x = myGameArea.x;
+		myGamePiece.y = myGameArea.y;
+	}*/
 
 	//keybord as controller
 	/*
