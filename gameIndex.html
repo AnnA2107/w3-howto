@@ -8,6 +8,8 @@
 <body onload="startGame()">
 <script>
 var myGamePiece;
+// canvas controller
+var myUpBtn, myDownBtn, myLeftBtn, myRightBtn;
 /*add 3 more components*/
 /*var redGamePiece, blueGamePiece, yellowGamePiece;*/
 
@@ -16,8 +18,15 @@ function startGame() {
 	/*redGamePiece = new component(75, 75, "red", 10, 10);
     yellowGamePiece = new component(75, 75, "yellow", 50, 60); 
     blueGamePiece = new component(75, 75, "blue", 10, 110);*/
-    myGameArea.start();
     myGamePiece = new component (30, 30, "red", 10, 120);
+    //canvas controller
+    /*
+    myUpBtn = new component(30, 30, "blue", 50, 10);
+    myDownBtn = new component(30, 30, "blue", 50, 70);
+    myLeftBtn = new component(30, 30, "blue", 20, 40);
+    myRightBtn = new component(30, 30, "blue", 80, 40);
+    */
+    myGameArea.start();
 }
 
 var myGameArea = {
@@ -30,6 +39,25 @@ var myGameArea = {
         this.context = this.canvas.getContext("2d");
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.interval = setInterval(updateGameArea, 20);
+        //controllers on the canvas
+        /*
+        window.addEventListener("mousedown", function(e){
+        	myGameArea.x = e.pageX;
+        	myGameArea.y = e.pageY;
+        })
+        window.addEventListener("mouseup", function(e){
+        	myGameArea.x = false;
+        	myGameArea.y = false;
+        })
+        window.addEventListener("touchstart", function(e){
+        	myGameArea.x = e.pageX;
+        	myGameArea.y = e.pageY;
+        })
+        window.addEventListener("touchend", function(e){
+        	myGameArea.x = false;
+        	myGameArea.y = false;
+        })
+		*/
         //touch screen as controller
         /*
         window.addEventListener("touchmove",function (e){
@@ -69,6 +97,21 @@ function component(width, height, color, x,y){
 		ctx.fillStyle = color;
 		ctx.fillRect(this.x, this.y, this.width, this.height);
 	}
+	//canvas controller
+	/*
+	this.clicked = function(){
+		var myleft = this.x;
+		var meright = this.x + (this.width);
+		var mytop = this.y;
+		var mybottom = this.y + (this.height);
+		var clicked = true;
+		if (((mybottom < myGameArea.y) || (mytop > myGameArea.y)
+         || (myright < myGameArea.x) || (myleft > myGameArea.x))) {
+			clicked = false;
+		}
+		return clicked;
+	}*/
+	//no need for canvas controller
 	this.newPos = function(){
 		this.x += this.speedX;
 		this.y += this.speedY;
@@ -76,6 +119,25 @@ function component(width, height, color, x,y){
 }
 function updateGameArea(){
 	myGameArea.clear();
+	//canvas controller
+	/*if(myGameArea.x && myGameArea.y){
+		if(myUpBtn.clicked()){
+			myGamePiece.y -=1;
+		}
+		if(myDownBtn.clicked()){
+			myGamePiece.y +=1;
+		}
+		if(myLeftBtn.clicked()){
+			myGamePiece.x -=1;
+		}
+		if(myRightBtn.clicked()){
+			myGamePiece.x +=1;
+		}
+	}
+	myUpBtn.update();
+	myDownBtn.update();
+	myLeftBtn.update();
+	myRightBtn.update();*/
 	//touchscreen as controller
 	/*
 	if(myGameArea.touchX && myGameArea.touchY){
@@ -106,8 +168,13 @@ function updateGameArea(){
 		myGamePiece.speedY = 1;
 	}
 	*/
+	
+	//no need for canvas controllers
 	myGamePiece.newPos();
 	myGamePiece.update();
+
+
+
 	//three color squares
 	/*redGamePiece.x += 1;
     yellowGamePiece.x += 1; 
