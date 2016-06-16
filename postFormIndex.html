@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Post Form</title>
+	<link href="http://s3.amazonaws.com/codecademy-content/courses/ltp2/css/bootstrap.min.css" rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link href="postFormStyle.css" rel="stylesheet">
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js"></script>
+</head>
+<body>
+<div class="container">
+      <form>
+        <div class="form-group">
+          <textarea onclick="myFunction()" class="form-control status-box" rows="2" placeholder="What's on your mind?" id="myPost"></textarea>
+        </div>
+      </form>
+      <div class="button-group pull-right">
+        <p class="counter">140</p>
+        <a href="#" class="btn btn-primary">Post</a>
+      </div>
+    
+      <ul class="posts">
+      </ul>
+ </div>
+
+    
+    <script>
+    
+    var main = function() {
+		$('.btn').click(function() {
+		    var post = $('.status-box').val();
+		    $('<li>').text(post).prependTo('.posts');
+		    $('.status-box').val('');
+		    $('.counter').text('140');
+		    $('.btn').addClass('disabled');
+		  });
+		$('.status-box').keyup(function() {
+		  var postLength = $(this).val().length;
+		  var charactersLeft = 140 - postLength;
+		  $('.counter').text(charactersLeft);
+
+		  if(charactersLeft < 0) {
+		    $('.btn').addClass('disabled'); 
+		  }
+		  else if(charactersLeft == 140) {
+		    $('.btn').addClass('disabled');
+		  }
+		  else {
+		    $('.btn').removeClass('disabled');
+		  }
+		});
+		}
+		$('.btn').addClass('disabled');
+
+		$(document).ready(main);
+    </script>
+</body>
+</html>
