@@ -74,12 +74,19 @@ function moveleft(){
 function moveright(){
 	myGamePiece.speedX +=1;
 }
+function clearmove() {
+    myGamePiece.speedX = 0;
+    myGamePiece.speedY = 0;
+}
 </script>
-<div>
-<button onclick="moveup()">UP</button>
-<button onclick="movedown()">DOWN</button>
-<button onclick="moveleft()">LEFT</button>
-<button onclick="moveright()">RIGHT</button>
+<div class="control">
+<button onmousedown="moveup()" onmouseup="clearmove()" ontouchstart="moveup()">UP</button><br><br>
+<button onmousedown="moveleft()" onmouseup="clearmove()" ontouchstart="moveleft()">LEFT</button>
+<button onmousedown="moveright()" onmouseup="clearmove()" ontouchstart="moveright()">RIGHT</button><br><br>
+<button onmousedown="movedown()" onmouseup="clearmove()" ontouchstart="movedown()">DOWN</button>
+
 </div>
+<p>If you click a button the red square will start moving. The movement will stop when you stop pressing th button.</p>
+<p>We have added the ontouchstart event on the buttons, to make this example work for touch devices.</p>
 </body>
 </html>
