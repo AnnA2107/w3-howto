@@ -12,6 +12,7 @@ var myGamePiece;
 /*var redGamePiece, blueGamePiece, yellowGamePiece;*/
 
 function startGame() {
+	//three color squares
 	/*redGamePiece = new component(75, 75, "red", 10, 10);
     yellowGamePiece = new component(75, 75, "yellow", 50, 60); 
     blueGamePiece = new component(75, 75, "blue", 10, 110);*/
@@ -24,9 +25,18 @@ var myGameArea = {
     start : function() {
         this.canvas.width = 480;
         this.canvas.height = 270;
+        //mouse coursor as controller
+        this.canvas.style.cursor = "none"; //hide the original cursor
         this.context = this.canvas.getContext("2d");
         document.body.insertBefore(this.canvas, document.body.childNodes[0]);
         this.interval = setInterval(updateGameArea, 20);
+        //mouse coursor as controller
+        window.addEventListener("mousemove", function(e){
+        	myGameArea.x = e.pageX;
+        	myGameArea.y = e.pageY;
+        })
+        //keybord as controller
+        /*
         window.addEventListener("keydown", function(e){
         	myGameArea.keys = (myGameArea.keys || []);
         	myGameArea.keys[e.keyCode] = true;
@@ -34,6 +44,7 @@ var myGameArea = {
         window.addEventListener("keyup", function(e){
         	myGameArea.keys[e.keyCode] = false;
         })
+        */
     },
     clear : function(){
     	this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -58,6 +69,14 @@ function component(width, height, color, x,y){
 }
 function updateGameArea(){
 	myGameArea.clear();
+	//mouse coursor as controller
+	if(myGameArea.x && myGameArea.y){
+		myGamePiece.x = myGameArea.x;
+		myGamePiece.y = myGameArea.y;
+	}
+
+	//keybord as controller
+	/*
 	myGamePiece.speedX = 0;
 	myGamePiece.speedY = 0;
 	if (myGameArea.keys && myGameArea.keys[37]){
@@ -72,8 +91,10 @@ function updateGameArea(){
 	if (myGameArea.keys && myGameArea.keys[40]){
 		myGamePiece.speedY = 1;
 	}
+	*/
 	myGamePiece.newPos();
 	myGamePiece.update();
+	//three color squares
 	/*redGamePiece.x += 1;
     yellowGamePiece.x += 1; 
     yellowGamePiece.y += 1; 
