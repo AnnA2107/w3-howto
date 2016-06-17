@@ -17,7 +17,7 @@ var myBackground;
 
 function startGame() {
     myGamePiece = new component(30, 30, "smile.gif", 10, 120, "image");
-    myBackground = new component (656, 270,"nature.jpg", 0, 0, "image");
+    myBackground = new component(656, 270, "nature.jpg", 0, 0, "background");
     myGameArea.start();
 }
 
@@ -41,7 +41,7 @@ var myGameArea = {
 
 function component(width, height, color, x, y, type) {
     this.type = type;
-    if (type == "image") {
+    if (type == "image" || type == "background") {
         this.image = new Image();
         this.image.src = color;
     }
@@ -53,11 +53,17 @@ function component(width, height, color, x, y, type) {
     this.y = y;
     this.update = function() {
         ctx = myGameArea.context;
-        if (type == "image") {
+        if (type == "image" || type == "background") {
             ctx.drawImage(this.image,
                 this.x,
                 this.y,
                 this.width, this.height);
+        if (type == "background") {
+            ctx.drawImage(this.image,
+                this.x + this.width,
+                this.y,
+                this.width, this.height);
+        }
         } else {
             ctx.fillStyle = color;
             ctx.fillRect(this.x, this.y, this.width, this.height);
@@ -66,6 +72,11 @@ function component(width, height, color, x, y, type) {
     this.newPos = function() {
         this.x += this.speedX;
         this.y += this.speedY;
+        if (this.type == "background") {
+            if (this.x == -(this.width)) {
+                this.x = 0;
+            }
+        }
     }
 }
 
@@ -78,12 +89,12 @@ function updateGameArea() {
     myGamePiece.update();
 }
 
-function move(dir){
+function move(dir) {
     myGamePiece.image.src = "sad.gif";
-    if (dir == "up"){myGamePiece.speedY = -1;}
-    if (dir == "down"){myGamePiece.speedY = 1;}
-    if (dir == "left"){myGamePiece.speedX = -1;}
-    if (dir == "right"){myGamePiece.speedX = 1;}
+    if (dir == "up") {myGamePiece.speedY = -1; }
+    if (dir == "down") {myGamePiece.speedY = 1; }
+    if (dir == "left") {myGamePiece.speedX = -1; }
+    if (dir == "right") {myGamePiece.speedX = 1; }
 }
 
 function clearmove() {
@@ -99,7 +110,8 @@ function clearmove() {
   <button onmousedown="move('down')" onmouseup="clearmove()" ontouchstart="move('down')">DOWN</button>
 </div>
 
-<p>The component constructor uses the built-in image object to draw images onto the canvas.</p>
-
+<p>The background will go on looping forever.</p>
+<p>You should choose a background which overlaps better than in this example.</p>
 </body>
 </html>
+
