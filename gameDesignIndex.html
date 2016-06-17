@@ -13,9 +13,11 @@ canvas {
 <script>
 
 var myGamePiece;
+var myBackground;
 
 function startGame() {
     myGamePiece = new component(30, 30, "smile.gif", 10, 120, "image");
+    myBackground = new component (656, 270,"nature.jpg", 0, 0, "image");
     myGameArea.start();
 }
 
@@ -69,6 +71,8 @@ function component(width, height, color, x, y, type) {
 
 function updateGameArea() {
     myGameArea.clear();
+    myBackground.newPos();
+    myBackground.update();
     myGamePiece.newPos();
     myGamePiece.update();
 }
